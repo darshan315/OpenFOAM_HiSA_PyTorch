@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/CleanFunctions
+
+cd mesh
+
+cleanCase
+rm -rf 0 > /dev/null 2>&1
+
+cd ..
+
+# ----------------------------------------------------------------- end-of-file
+
+

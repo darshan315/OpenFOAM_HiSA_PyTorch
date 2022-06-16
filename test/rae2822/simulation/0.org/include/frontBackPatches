@@ -1,0 +1,21 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+|                                                                             |
+|    HiSA: High Speed Aerodynamic solver                                      |
+|    Copyright (C) 2014-2017 Johan Heyns - CSIR, South Africa                 |
+|    Copyright (C) 2014-2017 Oliver Oxtoby - CSIR, South Africa               |
+|                                                                             |
+\*---------------------------------------------------------------------------*/
+
+"(back|front)"
+{
+    type            empty;
+}
+
+// Placeholder, do not contain faces
+"(intPatch1|intPatch2)"
+{
+    type            zeroGradient;
+}
+
+
+// ************************************************************************* //

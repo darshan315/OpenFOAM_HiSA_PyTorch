@@ -1,0 +1,38 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+|                                                                             |
+|    HiSA: High Speed Aerodynamic solver                                      |
+|    Copyright (C) 2014-2017 Johan Heyns - CSIR, South Africa                 |
+|    Copyright (C) 2014-2017 Oliver Oxtoby - CSIR, South Africa               |
+|                                                                             |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      sampleDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs ("libsampling.so");
+type    surfaces;
+
+interpolationScheme cellPoint;
+
+setFormat       raw;
+surfaceFormat   raw;
+
+surfaces
+(
+    walls_constant
+    {
+        type    patch;
+        patches ( airfoil );
+    }
+);
+
+fields          ( p );
+
+
+// ************************************************************************* //

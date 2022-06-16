@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+cd mesh
+
+# Plot 3D mesh
+# (See www.grc.nasa.gov/WWW/wind/valid/raetaf/raetaf04/raetaf04.html)
+
+GEO=raetaf
+
+cd p3dMesh
+./p2d2p3d.py $GEO.p2dfmt   # Convert p2d to p3d
+./p3d2gmsh.py $GEO.p3dfmt  # Convert p3d to gmsh
+cd ..
+
+# Work around a gmshToFoam bug in OpenFOAM v2106
+if [ $FOAM_API -eq 2106 ]
+then
+    sed -i 's/^\(\$.*\)$/"\1"/' p3dMesh/$GEO.msh
+fi
+
+# Convert GMSH to FOAM
+runApplication gmshToFoam p3dMesh/$GEO.msh
+
+# Remove internal patch
+runApplication stitchMesh -perfect -toleranceDict stitchMeshToleranceDict  intPatch1 intPatch2 -overwrite 
+
+# Set viscous wall boundary type to 'wall'
+runApplication changeDictionary
+
+# Scale as NPARC is in feet
+runApplication transformPoints -scale '( 0.3048 1 0.3048 )'
+
+rm 0/meshPhi
+
+# Sparse system ordering
+runApplication renumberMesh -overwrite
+
+cd ..
+
+# ----------------------------------------------------------------- end-of-file
