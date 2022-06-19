@@ -1,8 +1,8 @@
 username="$USER"
 user="$(id -u)"
-default_image="darsh3/openfoam_hisa_pytorch:of2106_hisa1.4.6_pt1.9.0_ub1804"
+default_image="darsh3/openfoam_hisa_pytorch:of2112_hisa1.4.6_pt1.10.2_ub22.04"
 image="${1:-$default_image}"
-default_container_name="of2106_hisa1.4.6_pt1.9.0_ub1804"
+default_container_name="of2112_hisa1.4.6_pt1.10.2_ub22.04"
 container_name="${2:-$default_container_name}"
 
 docker container run -it -d --name $container_name        \

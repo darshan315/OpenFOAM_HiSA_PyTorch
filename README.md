@@ -4,8 +4,8 @@
 
 The Dockerfile in this repository creates an image with [ESI-OpenFOAM](https://openfoam.com/), [HiSA](https://hisa.gitlab.io/) and [PyTorch](https://pytorch.org/) support. The image is currently based on
 
-- Ubuntu 18.04,
-- OpenFOAM-v2106,
+- Ubuntu 22.04,
+- OpenFOAM-v2112,
 - HiSA 1.4.6, and
 - PyTorch 1.10.2 (only CPU).
 
@@ -23,7 +23,7 @@ OpenFOAM is not compiled from scratch but installed via the package manager ([re
   ```
   git clone https://github.com/darshan315/OpenFOAM_HiSA_PyTorch.git
   cd OpenFOAM_HiSA_PyTorch
-  docker build -t user_name/of_hisa_pt:of_hisa_pt -f Dockerfile .
+  docker build -t user_name/openfoam_hisa_pytorch:of2112_hisa1.4.6_pt1.10.2_ub22.04 -f Dockerfile .
   ```
   To create a container,
   
@@ -46,15 +46,15 @@ OpenFOAM is not compiled from scratch but installed via the package manager ([re
   
   To build the image (.sif),
   ```
-  sudo singularity build of2106_hisa1.4.6_pt1.10.2.sif Singularity.def
+  sudo singularity build of2112_hisa1.4.6_pt1.10.2_ub22.04.sif Singularity.def
   ```
   To use the container interactively,
   ```
-  singularity shell of2106_hisa1.4.6_pt1.10.2.sif
+  singularity shell of2112_hisa1.4.6_pt1.10.2_ub22.04.sif
   ```
   To use the image non-interactively and run the application,
   ```
-  singularity run of2106_hisa1.4.6_pt1.10.2.sif [path] [arguments]
+  singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif [path] [arguments]
   ```
 </details> 
 
@@ -72,9 +72,9 @@ OpenFOAM is not compiled from scratch but installed via the package manager ([re
 
       ```
       # To run the simulation
-      singularity run of2106_hisa1.4.6_pt1.10.2.sif ./Allrun ./test/cavity/
+      singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./Allrun ./test/cavity/
       # To clean the finished simulation
-      singularity run of2106_hisa1.4.6_pt1.10.2.sif ./Allclean ./test/cavity/
+      singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./Allclean ./test/cavity/
       ```
   
     </details>
@@ -87,13 +87,13 @@ OpenFOAM is not compiled from scratch but installed via the package manager ([re
   
       ```
       # To generate the mesh
-      singularity run of2106_hisa1.4.6_pt1.10.2.sif ./setupMesh ./test/rae2822/
+      singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./setupMesh ./test/rae2822/
       # To run the simulation
-      singularity run of2106_hisa1.4.6_pt1.10.2.sif ./runSim ./test/rae2822/
+      singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./runSim ./test/rae2822/
       # To clean the mesh
-      singularity run of2106_hisa1.4.6_pt1.10.2.sif ./cleanMesh ./test/rae2822/
+      singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./cleanMesh ./test/rae2822/
       # To clean the finished simulation
-      singularity run of2106_hisa1.4.6_pt1.10.2.sif ./cleanSim ./test/rae2822/
+      singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./cleanSim ./test/rae2822/
       ```
   
     </details>
@@ -107,16 +107,16 @@ OpenFOAM is not compiled from scratch but installed via the package manager ([re
 
     ```
     # build
-    singularity run of2106_hisa1.4.6_pt1.10.2.sif wmake test/tensorCreation/
+    singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif wmake test/tensorCreation/
     # run
-    singularity run of2106_hisa1.4.6_pt1.10.2.sif ./tensorCreation test/tensorCreation/
+    singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./tensorCreation test/tensorCreation/
     # clean
-    singularity run of2106_hisa1.4.6_pt1.10.2.sif wclean test/tensorCreation/
+    singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif wclean test/tensorCreation/
     ```
     Alternatively, one can also define scripts, which are then executed by Singularity. For example, to build and run the second example, *simpleMLP*, run the *compileAndRun.sh* script:
 
     ```
-    singularity run of2106-py1.9.0-cpu.sif ./compileAndRun.sh test/simpleMLP/
+    singularity run of2112_hisa1.4.6_pt1.10.2_ub22.04.sif ./compileAndRun.sh test/simpleMLP/
     ```
 
   </details>
